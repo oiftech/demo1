@@ -1,0 +1,21 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP TRIGGER /*!50032 IF EXISTS */ `policy_vault_check_policy_no`$$
+
+CREATE
+    /*!50017 DEFINER = 'root'@'localhost' */
+    TRIGGER `policy_vault_check_policy_no` BEFORE UPDATE ON `policy_vault` 
+    FOR EACH ROW BEGIN
+           IF NEW.policy_no = '' THEN
+		IF OLD.is_valid=1 THEN
+			SET NEW.policy_no = OLD.policy_no;
+		ELSE 
+			SET NEW.policy_no = NEW.policy_no ;
+		END IF;
+           END IF;
+       END;
+$$
+
+DELIMITER ;

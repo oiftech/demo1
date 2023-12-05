@@ -1,0 +1,46 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP VIEW IF EXISTS `view_gibl_cvs`$$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_gibl_cvs` AS 
+SELECT
+  `gibl_angular`.`gibl_cvs`.`id`                    AS `id`,
+  `gibl_angular`.`gibl_cvs`.`brand_code`            AS `brand_code`,
+  `gibl_angular`.`gibl_cvs`.`brand_logo`            AS `brand_logo`,
+  `gibl_angular`.`gibl_cvs`.`brand_name`            AS `brand_name`,
+  `gibl_angular`.`gibl_cvs`.`popular_brand_old`     AS `popular_brand_old`,
+  `gibl_angular`.`gibl_cvs`.`popular_brand`         AS `popular_brand`,
+  `gibl_angular`.`gibl_cvs`.`model_name`            AS `model_name`,
+  `gibl_angular`.`gibl_cvs`.`model_code`            AS `model_code`,
+  `gibl_angular`.`gibl_cvs`.`popular_model`         AS `popular_model`,
+  `gibl_angular`.`gibl_cvs`.`variant_name`          AS `variant_name`,
+  `gibl_angular`.`gibl_cvs`.`variant_code`          AS `variant_code`,
+  `gibl_angular`.`gibl_cvs`.`popular_variant`       AS `popular_variant`,
+  `gibl_angular`.`gibl_cvs`.`cubic_capacity`        AS `cubic_capacity`,
+  `gibl_angular`.`gibl_cvs`.`fuel_type`             AS `fuel_type`,
+  `gibl_angular`.`gibl_cvs`.`seating_capacity`      AS `seating_capacity`,
+  `gibl_angular`.`gibl_cvs`.`min_seating_capacity`  AS `min_seating_capacity`,
+  `gibl_angular`.`gibl_cvs`.`max_seating_capacity`  AS `max_seating_capacity`,
+  `gibl_angular`.`gibl_cvs`.`bus_type`              AS `bus_type`,
+  `gibl_angular`.`gibl_cvs`.`is_vintage`            AS `is_vintage`,
+  `gibl_angular`.`gibl_cvs`.`exshowroom_price`      AS `exshowroom_price`,
+  `gibl_angular`.`gibl_cvs`.`wheels`                AS `wheels`,
+  `gibl_angular`.`gibl_cvs`.`vehicletype`           AS `vehicletype`,
+  `gibl_angular`.`gibl_cvs`.`weight`                AS `weight`,
+  `gibl_angular`.`gibl_cvs`.`reliance_code_public`  AS `reliance_code_public`,
+  `gibl_angular`.`gibl_cvs`.`reliance_code_private` AS `reliance_code_private`,
+  `gibl_angular`.`gibl_cvs`.`bajaj_code`            AS `bajaj_code`,
+  `gibl_angular`.`gibl_cvs`.`shriram_code`          AS `shriram_code`,
+  `gibl_angular`.`gibl_cvs`.`hdfc_code`             AS `hdfc_code`,
+  `gibl_angular`.`gibl_cvs`.`magma_code`            AS `magma_code`,
+  `gibl_angular`.`gibl_cvs`.`bharti_code`           AS `bharti_code`,
+  `gibl_angular`.`gibl_cvs`.`sompo_code`            AS `sompo_code`,
+  `gibl_angular`.`gibl_cvs`.`digit_code`            AS `digit_code`,
+  `gibl_angular`.`gibl_cvs`.`vehicle_class`         AS `vehicle_class`,
+  `gibl_angular`.`gibl_cvs`.`vehicle_subclass`      AS `vehicle_subclass`,
+  `gibl_angular`.`gibl_cvs`.`vehicle_subclass_code` AS `vehicle_subclass_code`
+FROM `gibl_angular`.`gibl_cvs`$$
+
+DELIMITER ;

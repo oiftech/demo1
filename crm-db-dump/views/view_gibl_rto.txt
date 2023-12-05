@@ -1,0 +1,25 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP VIEW IF EXISTS `view_gibl_rto`$$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_gibl_rto` AS 
+SELECT
+  `gibl_angular`.`gibl_rto`.`rto_id`      AS `rto_id`,
+  `gibl_angular`.`gibl_rto`.`rto_code`    AS `rto_code`,
+  `gibl_angular`.`gibl_rto`.`rto_name`    AS `rto_name`,
+  `gibl_angular`.`gibl_rto`.`city_name`   AS `city_name`,
+  `gibl_angular`.`gibl_rto`.`rto_zone`    AS `rto_zone`,
+  `gibl_angular`.`gibl_rto`.`state_name`  AS `state_name`,
+  `gibl_angular`.`gibl_rto`.`city_id`     AS `city_id`,
+  `gibl_angular`.`gibl_rto`.`state_id`    AS `state_id`,
+  `gibl_angular`.`gibl_rto`.`reliance_id` AS `reliance_id`,
+  `gibl_angular`.`gibl_rto`.`bajaj_id`    AS `bajaj_id`,
+  `gibl_angular`.`gibl_rto`.`bharti_id`   AS `bharti_id`,
+  `gibl_angular`.`gibl_rto`.`kotak_id`    AS `kotak_id`,
+  `gibl_angular`.`gibl_rto`.`oriental_id` AS `oriental_id`,
+  `gibl_angular`.`gibl_rto`.`hdfc_rto_cv` AS `hdfc_rto_cv`
+FROM `gibl_angular`.`gibl_rto`$$
+
+DELIMITER ;

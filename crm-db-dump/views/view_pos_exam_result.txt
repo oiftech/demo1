@@ -1,0 +1,19 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP VIEW IF EXISTS `view_pos_exam_result`$$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_pos_exam_result` AS 
+SELECT
+  `exam_master`.`exam_id`       AS `exam_id`,
+  `exam_master`.`examinee_code` AS `examinee_code`,
+  `exam_master`.`exam_status`   AS `exam_status`,
+  `exam_master`.`score`         AS `score`,
+  `exam_master`.`created_on`    AS `created_on`
+FROM `exam_master`
+WHERE (`exam_master`.`exam_status` = 'P')
+GROUP BY `exam_master`.`examinee_code`
+ORDER BY `exam_master`.`examinee_code` DESC$$
+
+DELIMITER ;

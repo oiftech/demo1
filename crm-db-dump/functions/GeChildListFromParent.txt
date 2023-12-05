@@ -1,0 +1,33 @@
+DELIMITER $$
+
+USE `dump_crm`$$
+
+DROP FUNCTION IF EXISTS `GeChildListFromParent`$$
+
+CREATE DEFINER=`root`@`%` FUNCTION `GeChildListFromParent`(root_id BIGINT) RETURNS VARCHAR(255) CHARSET utf8mb4
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+    DECLARE str VARCHAR(255);
+    DECLARE cid VARCHAR(255);
+    DECLARE k INT DEFAULT 0;
+    
+    SET str = '';
+    SET cid = CAST(root_id AS CHAR);
+    WHILE cid IS NOT NULL DO
+        IF k > 0 THEN
+            IF str != '' THEN
+                SET str = CONCAT(str, ',', cid);
+            ELSE
+                SET str = cid;
+            END IF;
+        END IF;
+        
+        SELECT GROUP_CONCAT(user_code) INTO cid FROM users WHERE FIND_IN_SET(parent_user_code, cid) > 0;
+        SET k = k + 1;
+    END WHILE;
+    
+    RETURN str;
+END$$
+
+DELIMITER ;

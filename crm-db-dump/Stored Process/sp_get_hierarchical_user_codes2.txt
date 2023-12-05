@@ -1,0 +1,17 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP PROCEDURE IF EXISTS `sp_get_hierarchical_user_codes2`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_hierarchical_user_codes2`(IN ucode INT)
+BEGIN
+SELECT T1.parent_user_code AS pcode, T1.user_code AS ucode, T1.role_type AS role_type, T1.user_fname AS fname, T1.user_lname AS lname, T1.associate_code AS acode
+FROM
+  `users` AS T1 WHERE (`role_type` = 8 OR `role_type` = 12 OR `role_type` = 19 OR `role_type` = 20 OR `role_type` = 21 OR `role_type` = 16) 
+  AND `associate_code` >1000000000 
+  AND T1.is_active ='Y'
+  ORDER BY T1.`user_fname` ASC LIMIT 8000000;
+END$$
+
+DELIMITER ;

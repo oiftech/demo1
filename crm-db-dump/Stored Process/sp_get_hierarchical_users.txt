@@ -1,0 +1,44 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP PROCEDURE IF EXISTS `sp_get_hierarchical_users`$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_hierarchical_users`(IN ucode INT, IN utype INT)
+BEGIN
+IF(utype > 0) THEN
+SELECT T1.parent_user_code, T1.user_code, T1.user_name, T1.user_fname, T1.user_lname, T1.associate_code, T1.role_type, T1.entry_date
+FROM
+  `users` AS T1 
+  INNER JOIN 
+    (SELECT 
+      `user_code` 
+    FROM
+      `users` 
+    WHERE `parent_user_code` = ucode 
+    AND (`role_type` = 8 OR `role_type` = 12 OR `role_type` = 19 OR `role_type` = 20)
+    AND `associate_code` >0) AS T2 
+    ON ( T2.`user_code` = T1.`parent_user_code` 
+    OR T1.`parent_user_code` = ucode )
+	GROUP BY T1.`user_code` 
+	ORDER BY T1.user_code ASC;
+ELSE IF(utype = 0) THEN	
+SELECT T1.parent_user_code, T1.user_code, T1.user_name, T1.user_fname, T1.user_lname, T1.associate_code, T1.entry_date
+FROM
+  `users` AS T1 
+  INNER JOIN 
+    (SELECT 
+      `user_code` 
+    FROM
+      `users` 
+    WHERE `parent_user_code` = ucode) AS T2 
+    ON ( T2.`user_code` = T1.`parent_user_code` 
+    OR T1.`parent_user_code` = ucode )
+	GROUP BY T1.`user_code` 
+	ORDER BY T1.user_code ASC;
+END IF;	
+END IF;
+	
+END$$
+
+DELIMITER ;

@@ -1,0 +1,39 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP VIEW IF EXISTS `view_gibl_cars`$$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_gibl_cars` AS 
+SELECT
+  `gibl_angular`.`gibl_cars`.`id`                AS `id`,
+  `gibl_angular`.`gibl_cars`.`brand_logo`        AS `brand_logo`,
+  `gibl_angular`.`gibl_cars`.`brand_name`        AS `brand_name`,
+  `gibl_angular`.`gibl_cars`.`brand_code`        AS `brand_code`,
+  `gibl_angular`.`gibl_cars`.`popular_brand`     AS `popular_brand`,
+  `gibl_angular`.`gibl_cars`.`model_name`        AS `model_name`,
+  `gibl_angular`.`gibl_cars`.`model_code`        AS `model_code`,
+  `gibl_angular`.`gibl_cars`.`popular_model`     AS `popular_model`,
+  `gibl_angular`.`gibl_cars`.`variant_name`      AS `variant_name`,
+  `gibl_angular`.`gibl_cars`.`variant_code`      AS `variant_code`,
+  `gibl_angular`.`gibl_cars`.`popular_variant`   AS `popular_variant`,
+  `gibl_angular`.`gibl_cars`.`cubic_capacity`    AS `cubic_capacity`,
+  `gibl_angular`.`gibl_cars`.`seating_capacity`  AS `seating_capacity`,
+  `gibl_angular`.`gibl_cars`.`carrying_capacity` AS `carrying_capacity`,
+  `gibl_angular`.`gibl_cars`.`fuel_type2`        AS `fuel_type2`,
+  `gibl_angular`.`gibl_cars`.`is_vintage`        AS `is_vintage`,
+  `gibl_angular`.`gibl_cars`.`is_active`         AS `is_active`,
+  `gibl_angular`.`gibl_cars`.`exshowroom_price`  AS `exshowroom_price`,
+  `gibl_angular`.`gibl_cars`.`brand_code_pb`     AS `brand_code_pb`,
+  `gibl_angular`.`gibl_cars`.`model_code_pb`     AS `model_code_pb`,
+  `gibl_angular`.`gibl_cars`.`variant_code_pb`   AS `variant_code_pb`,
+  `gibl_angular`.`gibl_cars`.`fuel_type`         AS `fuel_type`,
+  `gibl_angular`.`gibl_cars`.`bharti_id`         AS `bharti_id`,
+  `gibl_angular`.`gibl_cars`.`hdfc_id`           AS `hdfc_id`,
+  `gibl_angular`.`gibl_cars`.`reliance_id`       AS `reliance_id`,
+  `gibl_angular`.`gibl_cars`.`bajaj_id`          AS `bajaj_id`,
+  `gibl_angular`.`gibl_cars`.`kotak_id`          AS `kotak_id`,
+  `gibl_angular`.`gibl_cars`.`oriental_id`       AS `oriental_id`
+FROM `gibl_angular`.`gibl_cars`$$
+
+DELIMITER ;

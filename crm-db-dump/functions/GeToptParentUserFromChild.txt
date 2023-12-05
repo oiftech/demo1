@@ -1,0 +1,39 @@
+DELIMITER $$
+
+USE `dump_crm`$$
+
+DROP FUNCTION IF EXISTS `GeToptParentUserFromChild`$$
+
+CREATE DEFINER=`root`@`%` FUNCTION `GeToptParentUserFromChild`(root_id BIGINT) RETURNS VARCHAR(1000) CHARSET utf8mb4
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+    DECLARE k INT DEFAULT 0;
+        DECLARE fid INT DEFAULT 1;
+        DECLARE str VARCHAR(1000) DEFAULT '';
+        WHILE root_id > 0 DO
+               SET fid=(SELECT users.parent_user_code 
+               FROM users
+               LEFT JOIN users AS us1
+               ON users.parent_user_code=us1.user_code
+               WHERE users.user_code=root_id 
+               AND users.role_type IN(8,12) 
+               AND us1.role_type IN(8,12)
+               AND users.parent_user_code<>'100004'
+               ) ; 
+               
+               IF fid > 0 THEN
+                  IF str!='' THEN
+                   SET str = CONCAT(str,',',fid); 
+                  ELSE   
+                    SET str = fid;
+                  END IF;
+                   SET root_id = fid;  
+               ELSE 
+                   SET root_id=fid;  
+               END IF;  
+      END WHILE;
+     RETURN str;
+END$$
+
+DELIMITER ;

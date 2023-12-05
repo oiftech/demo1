@@ -1,0 +1,45 @@
+DELIMITER $$
+
+USE `crm`$$
+
+DROP VIEW IF EXISTS `view_gibl_bikes`$$
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`%` SQL SECURITY DEFINER VIEW `view_gibl_bikes` AS 
+SELECT
+  `angular_db`.`gibl_bikes`.`id`                AS `id`,
+  `angular_db`.`gibl_bikes`.`gibl_id`           AS `gibl_id`,
+  `angular_db`.`gibl_bikes`.`brand_code`        AS `brand_code`,
+  `angular_db`.`gibl_bikes`.`brand_name`        AS `brand_name`,
+  `angular_db`.`gibl_bikes`.`popular_brand`     AS `popular_brand`,
+  `angular_db`.`gibl_bikes`.`brand_logo`        AS `brand_logo`,
+  `angular_db`.`gibl_bikes`.`model_code`        AS `model_code`,
+  `angular_db`.`gibl_bikes`.`model_name`        AS `model_name`,
+  `angular_db`.`gibl_bikes`.`popular_model`     AS `popular_model`,
+  `angular_db`.`gibl_bikes`.`variant_code`      AS `variant_code`,
+  `angular_db`.`gibl_bikes`.`segment`           AS `segment`,
+  `angular_db`.`gibl_bikes`.`variant_name`      AS `variant_name`,
+  `angular_db`.`gibl_bikes`.`popular_variant`   AS `popular_variant`,
+  `angular_db`.`gibl_bikes`.`cubic_capacity`    AS `cubic_capacity`,
+  `angular_db`.`gibl_bikes`.`seating_capacity`  AS `seating_capacity`,
+  `angular_db`.`gibl_bikes`.`carrying_capacity` AS `carrying_capacity`,
+  `angular_db`.`gibl_bikes`.`fuel_type`         AS `fuel_type`,
+  `angular_db`.`gibl_bikes`.`is_vintage`        AS `is_vintage`,
+  `angular_db`.`gibl_bikes`.`is_active`         AS `is_active`,
+  `angular_db`.`gibl_bikes`.`exshowroom_price`  AS `exshowroom_price`,
+  `angular_db`.`gibl_bikes`.`hdfc_code`         AS `hdfc_code`,
+  `angular_db`.`gibl_bikes`.`bharti_code`       AS `bharti_code`,
+  `angular_db`.`gibl_bikes`.`bajaj_code`        AS `bajaj_code`,
+  `angular_db`.`gibl_bikes`.`kotak_code`        AS `kotak_code`,
+  `angular_db`.`gibl_bikes`.`sriram_code`       AS `sriram_code`,
+  `angular_db`.`gibl_bikes`.`reliance_code2`    AS `reliance_code2`,
+  `angular_db`.`gibl_bikes`.`reliance_code`     AS `reliance_code`,
+  `angular_db`.`gibl_bikes`.`oriental_code`     AS `oriental_code`,
+  `angular_db`.`gibl_bikes`.`tata_code`         AS `tata_code`,
+  `angular_db`.`gibl_bikes`.`pb_brand_code`     AS `pb_brand_code`,
+  `angular_db`.`gibl_bikes`.`pb_model_code`     AS `pb_model_code`,
+  `angular_db`.`gibl_bikes`.`pb_variant_code`   AS `pb_variant_code`,
+  `angular_db`.`gibl_bikes`.`newindia_code`     AS `newindia_code`,
+  `angular_db`.`gibl_bikes`.`sompo_code`        AS `sompo_code`
+FROM `angular_db`.`gibl_bikes`$$
+
+DELIMITER ;
